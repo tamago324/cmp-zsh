@@ -5,7 +5,7 @@ local M = {}
 
 local script_abspath = function()
   -- これでこの関数を呼出したファイルの絶対パスが取得できる
-  pprint(debug.getinfo(2, 'S').source:sub(2))
+  -- pprint(debug.getinfo(2, 'S').source:sub(2))
   return debug.getinfo(2, 'S').source:sub(2)
 end
 local capture_script_path = script_abspath():match('(.*)/lua/cmp_zsh.lua$') .. '/bin/cmp_capture.zsh'
@@ -90,7 +90,6 @@ M.complete = function(self, request, callback)
         buf = buf .. chunk
       end
       while true do
-        pprint(buf)
         local l, rest = line(buf)
         if l == nil then
           break
