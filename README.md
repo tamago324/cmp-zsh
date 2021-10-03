@@ -16,7 +16,7 @@ zmodload zsh/zpty
 
 ```vim
 Plug 'hrsh7th/nvim-cmp'
-Plug 'tamago324/compe-zsh'
+Plug 'tamago324/cmp-zsh'
 Plug 'Shougo/deol.nvim'      " recommended to use together.
 
 lua << EOF
