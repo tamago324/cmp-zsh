@@ -34,8 +34,18 @@ EOF
 It saves compdump file in `$COMPE_ZSH_CACHE_DIR` or `$XDG_CACHE_HOME` or
 `$HOME/.cache` directory.
 
+In order to show completions defined in your zshrc you can setup cmp zsh like this.
+*Note*: This feature is experimental. If you enable it and don't get any
+results try disabling it.
 
-NOTE: In my case, I had to add the directory of the complete function to `$FPATH` in `~/.zshenv`.
+```lua
+require'cmp_zsh'.setup {
+  zshrc = true -- Source the zshrc (adding all custom completions)
+}
+```
+
+Alternatively you can use this trick (if sourcing your zshrc is very slow):
+Add the directory of the complete function to `$FPATH` in `~/.zshenv`.
 
 ```zsh
 # completions
