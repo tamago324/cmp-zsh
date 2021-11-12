@@ -8,7 +8,13 @@ local script_abspath = function()
   -- pprint(debug.getinfo(2, 'S').source:sub(2))
   return debug.getinfo(2, 'S').source:sub(2)
 end
-local capture_script_path = script_abspath():match('(.*)/lua/cmp_zsh.lua$') .. '/bin/cmp_capture.zsh'
+local capture_script_path_base = script_abspath():match('(.*)/lua/cmp_zsh.lua$') .. '/bin/'
+local capture_script_path = capture_script_path_base .. 'cmp_capture.zsh'
+
+M.setup = function(opts)
+  local script = opts.zshrc and 'cmp_capture_zshrc.zsh' or 'cmp_capture.zsh'
+  capture_script_path = capture_script_path_base .. script
+end
 
 M.new = function()
   local self = setmetatable({}, { __index = M })
