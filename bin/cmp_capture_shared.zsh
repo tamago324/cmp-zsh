@@ -5,7 +5,7 @@ local line
 
 setopt rcquotes
 () {
-    zpty -w z source $1
+    zpty -w z " source $1"
     repeat 4; do
         zpty -r z line
         [[ $line == ok* ]] && return
