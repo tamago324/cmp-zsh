@@ -1,17 +1,25 @@
 local cmp = require'cmp'
 local luv = require'luv'
 
-local M = {}
-
 local script_abspath = function()
   -- これでこの関数を呼出したファイルの絶対パスが取得できる
   -- pprint(debug.getinfo(2, 'S').source:sub(2))
   return debug.getinfo(2, 'S').source:sub(2)
 end
 local capture_script_path_base = script_abspath():match('(.*)/lua/cmp_zsh.lua$') .. '/bin/'
-local capture_script_path = capture_script_path_base .. 'cmp_capture.zsh'
+
+local M = {
+  config = {
+    zshrc = false,
+    filetypes = {"*"},
+  },
+  capture_script_path = capture_script_path_base .. 'cmp_capture.zsh'
+}
 
 M.setup = function(opts)
+  opts = vim.tbl_deep_extend('keep', opts, M.config)
+  M.config = opts
+
   local script = opts.zshrc and 'cmp_capture_zshrc.zsh' or 'cmp_capture.zsh'
   capture_script_path = capture_script_path_base .. script
 end
@@ -74,7 +82,7 @@ M.complete = function(self, request, callback)
 
   do
     local spawn_params = {
-      args = { capture_script_path, q },
+      args = { self.capture_script_path, q },
       stdio = stdioe
     }
 
@@ -112,6 +120,10 @@ M.complete = function(self, request, callback)
       end
     end)
   end
+end
+
+M.is_available = function(self)
+  return vim.deep_equal(self.config.filetypes, {"*"}) or vim.tbl_contains(self.config.filetypes, vim.bo.filetype)
 end
 
 return M
