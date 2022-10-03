@@ -21,7 +21,7 @@ M.setup = function(opts)
   M.config = opts
 
   local script = opts.zshrc and 'cmp_capture_zshrc.zsh' or 'cmp_capture.zsh'
-  capture_script_path = capture_script_path_base .. script
+  M.capture_script_path = capture_script_path_base .. script
 end
 
 M.new = function()
