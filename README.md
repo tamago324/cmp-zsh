@@ -31,7 +31,7 @@ EOF
 
 ## Configuration
 
-It saves compdump file in `$COMPE_ZSH_CACHE_DIR` or `$XDG_CACHE_HOME` or
+It saves compdump file in `$CMP_ZSH_CACHE_DIR` or `$XDG_CACHE_HOME` or
 `$HOME/.cache` directory.
 
 In order to show completions defined in your zshrc you can setup cmp zsh like this.
