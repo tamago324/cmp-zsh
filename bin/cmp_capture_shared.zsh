@@ -21,8 +21,7 @@ mkdir -p "$CMP_ZSH_CACHE_DIR"
 PROMPT=
 
 # load completion system
-autoload -U compinit; compinit -C
-compinit -d "$CMP_ZSH_CACHE_DIR/compdump"
+autoload -U compinit; compinit -C -d "$CMP_ZSH_CACHE_DIR/compdump"
 
 # never run a command
 bindkey ''^M'' undefined
